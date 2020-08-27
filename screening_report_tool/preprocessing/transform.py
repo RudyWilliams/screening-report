@@ -11,6 +11,10 @@ class Data:
         self.us_prop_array = None
         self.rest_prop_array = None
 
+    @property
+    def problems(self):
+        return self.df.columns.values[:-1]
+
     def set_screenings_array(self):
         self.screenings_array = self.df[self.screening_column].values[:-1]
         return self
@@ -27,7 +31,6 @@ class Data:
         _df = self.df.copy()
         not_us = ~(_df.index == self.our_name) & ~(_df.index == total_row_name)
         rest_df = _df.loc[not_us, :]
-        # print(rest_df.sum(axis=0))
         rest_agg_array_with_screenings = rest_df.sum(axis=0).values
         rest_array, n_screenings_rest = (
             rest_agg_array_with_screenings[:-1],
