@@ -38,7 +38,7 @@ def create_problems_grouped_bar_plot(us_prop_array, rest_prop_array, problems):
     fig.update_layout(
         barmode="group",
         title={
-            "text": "Us vs. Rest of Network Aggregated",
+            "text": "Us vs. Aggregated Rest of Network",
             "x": 0.5,
             "xanchor": "center",
         },
