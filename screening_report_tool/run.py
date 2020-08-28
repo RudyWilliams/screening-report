@@ -59,7 +59,3 @@ def run_cli():
         fig2.write_html(bar_fpath)
         print(f"---grouped barplot saved at {bar_fpath}")
 
-
-if __name__ == "__main__":
-    run_cli()
-
