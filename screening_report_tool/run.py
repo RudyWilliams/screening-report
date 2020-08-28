@@ -1,10 +1,10 @@
 import argparse
 import pathlib
 
-import config
-from preprocessing.read import read_data_from_excel
-from preprocessing.transform import Data
-from plotting.plots import (
+import screening_report_tool.config as config
+from screening_report_tool.preprocessing.read import read_data_from_excel
+from screening_report_tool.preprocessing.transform import Data
+from screening_report_tool.plotting.plots import (
     create_screenings_boxplot,
     create_problems_grouped_bar_plot,
 )

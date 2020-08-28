@@ -1,5 +1,3 @@
-import pathlib
+from screening_report_tool import run
 
-
-path = pathlib.Path("this/is/output/")
-print(path.as_posix())
+run.run_cli()
