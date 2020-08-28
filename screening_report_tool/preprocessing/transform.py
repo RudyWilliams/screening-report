@@ -1,7 +1,7 @@
 class Data:
-    def __init__(self, df, screening_column, our_name):
+    def __init__(self, df, screening_column_name, our_name):
         self.df = df
-        self.screening_column = screening_column
+        self.screening_column_name = screening_column_name
         self.our_name = our_name
         self.screenings_array = None
         self.n_screenings_us = None
@@ -16,7 +16,7 @@ class Data:
         return self.df.columns.values[:-1]
 
     def set_screenings_array(self):
-        self.screenings_array = self.df[self.screening_column].values[:-1]
+        self.screenings_array = self.df[self.screening_column_name].values[:-1]
         return self
 
     def set_us_data(self):
@@ -46,8 +46,10 @@ if __name__ == "__main__":
 
     import pandas as pd
 
-    df = pd.read_excel("data/SampleScreeningData.xlsx", index_col=0)
-    data = Data(df=df, screening_column="Screenings", our_name="K")
+    df = pd.read_excel(
+        "screening_report_tool/data/SampleScreeningData.xlsx", index_col=0
+    )
+    data = Data(df=df, screening_column_name="Screenings", our_name="K")
     data.set_screenings_array()
     # print(data.screenings_array)
     data.set_us_data()

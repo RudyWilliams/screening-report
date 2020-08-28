@@ -1,6 +1,7 @@
 import argparse
 import pathlib
 
+import config
 from preprocessing.read import read_data_from_excel
 from preprocessing.transform import Data
 from plotting.plots import (
@@ -24,14 +25,16 @@ def run_cli():
     save_at = args.save_at
 
     # change to config file eventually
-    filepath = "data/SampleScreeningData.xlsx" if testing else ""
-    column_name = "Screenings"
-    our_name = "K"
-    total_row_name = "Total"
+    filepath = config.testing_filepath if testing else config.filepath
+    screening_column_name = config.screening_column_name
+    our_row_name = config.our_row_name
+    total_row_name = config.total_row_name
 
     df = read_data_from_excel(filepath=filepath)
 
-    data = Data(df=df, screening_column=column_name, our_name=our_name)
+    data = Data(
+        df=df, screening_column_name=screening_column_name, our_name=our_row_name
+    )
     data.set_screenings_array()
     data.set_us_data()
     data.set_rest_data(total_row_name=total_row_name)
