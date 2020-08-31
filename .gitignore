@@ -1,6 +1,7 @@
 __pycache__/
 venv/
 data/~$*.xlsx
+output/*.html
 
 build/
 dist/
