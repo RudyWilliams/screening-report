@@ -50,7 +50,7 @@ def run_cli():
                 "Must set both --month and --year when --testing is not flagged"
             )
 
-        create_filepath(
+        filepath = create_filepath(
             root=config.root, month=month, year=year, filename=config.filename
         )
 
