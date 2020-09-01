@@ -2,7 +2,10 @@ import argparse
 import pathlib
 
 import screening_report_tool.config as config
-from screening_report_tool.preprocessing.read import read_data_from_excel
+from screening_report_tool.preprocessing.read import (
+    create_filepath,
+    read_data_from_excel,
+)
 from screening_report_tool.preprocessing.transform import Data
 from screening_report_tool.plotting.plots import (
     create_screenings_boxplot,
@@ -14,18 +17,43 @@ def run_cli():
     parser = argparse.ArgumentParser(description="Create plots to analyze screenings.")
 
     parser.add_argument(
+        "--month",
+        type=str,
+        default=None,
+        help="The month to look for the data in (required when --testing is not flagged)",
+    )
+    parser.add_argument(
+        "--year",
+        type=str,
+        default=None,
+        help="The year to look for the data in (required when --testing is not flagged)",
+    )
+    parser.add_argument(
         "--testing", action="store_true", help="When flagged, use the sample data"
     )
     parser.add_argument(
-        "--save-at", type=str, default=None, help="dir path as location to save figures"
+        "--save-at", type=str, default=None, help="Dir path as location to save figures"
     )
     args = parser.parse_args()
 
+    month = args.month
+    year = args.year
     testing = args.testing
     save_at = args.save_at
 
-    # change to config file eventually
-    filepath = config.testing_filepath if testing else config.filepath
+    if testing:
+        filepath = config.testing_filepath
+
+    else:
+        if (month is None) or (year is None):
+            raise ValueError(
+                "Must set both --month and --year when --testing is not flagged"
+            )
+
+        create_filepath(
+            root=config.root, month=month, year=year, filename=config.filename
+        )
+
     screening_column_name = config.screening_column_name
     our_row_name = config.our_row_name
     total_row_name = config.total_row_name

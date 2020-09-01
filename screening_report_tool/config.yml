@@ -1,4 +1,7 @@
-filepath: "c:/some/path/to/production/data.xlsx"
+production:
+  root: "c:/some/path/to/data/root/dir"
+  filename: "filename.xlsx"
+  
 testing_filepath: "screening_report_tool/data/SampleScreeningData.xlsx"
 
 screening_column_name: "Screenings"

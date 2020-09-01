@@ -3,7 +3,8 @@ import yaml
 with open("screening_report_tool/config.yml", "r") as f:
     config = yaml.safe_load(f)
 
-filepath = config["filepath"]
+root = config["production"]["root"]
+filename = config["production"]["filename"]
 testing_filepath = config["testing_filepath"]
 
 screening_column_name = config["screening_column_name"]
